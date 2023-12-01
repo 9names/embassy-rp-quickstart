@@ -1,6 +1,6 @@
 [package]
 edition = "2021"
-name = "embassy-rp-starter"
+name = "{{crate_name}}"
 version = "0.1.0"
 license = "MIT OR Apache-2.0"
 resolver = "2"
@@ -22,39 +22,57 @@ embassy-sync = { version = "0.4.0", features = ["defmt"] }
 embassy-time = { version = "0.1.5", features = ["nightly", "unstable-traits", "defmt", "defmt-timestamp-uptime"] }
 
 embassy-rp = { version = "0.1.0", features = ["defmt", "unstable-traits", "nightly", "unstable-pac", "time-driver", "critical-section-impl"] }
+{%- if pio %}
 ## need these for pio
 pio-proc = "0.2"
 pio = "0.2.1"
+{%- endif %}
+{%- if usb %}
 ## USB + logging via USB support (note: embassy-usb-logger requires portable-atomic with critical-section feature enabled)
 embassy-usb = { version = "0.1.0", features = ["defmt"] }
 embassy-usb-logger = { version = "0.1.0" }
 portable-atomic = { version = "1.5.1", features = ["critical-section"] }
 log = "0.4"
+{%- endif %}
+{%- if wiznet or cyw43 %}
 ## network support
 embassy-net = { version = "0.2.0", features = ["defmt", "nightly", "tcp", "udp", "dhcpv4", "medium-ethernet"] }
+{%- endif %}
+{%- if wiznet %}
 # wiznet ethernet driver support
 embassy-net-wiznet = { version = "0.1.0", features = ["defmt"] }
+{%- endif %}
+{%- if cyw43 %}
 ## pico-w support
 cyw43 = { version = "0.1.0", features = ["defmt", "firmware-logs"] }
 cyw43-pio = { version = "0.1.0", features = ["defmt", "overclock"] }
+{%- endif %}
 
 [patch.crates-io]
-embassy-embedded-hal = { git = "https://github.com/embassy-rs/embassy", rev = "4634316749c41dd5d8cc2f316033c9098369ed2f" }
-embassy-sync = { git = "https://github.com/embassy-rs/embassy", rev = "4634316749c41dd5d8cc2f316033c9098369ed2f" }
-embassy-executor = { git = "https://github.com/embassy-rs/embassy", rev = "4634316749c41dd5d8cc2f316033c9098369ed2f" }
-embassy-time = { git = "https://github.com/embassy-rs/embassy", rev = "4634316749c41dd5d8cc2f316033c9098369ed2f" }
-embassy-rp = { git = "https://github.com/embassy-rs/embassy", rev = "4634316749c41dd5d8cc2f316033c9098369ed2f" }
-embassy-futures = { git = "https://github.com/embassy-rs/embassy", rev = "4634316749c41dd5d8cc2f316033c9098369ed2f" }
+embassy-embedded-hal = { git = "https://github.com/embassy-rs/embassy", rev = "{{embassyrev}}" }
+embassy-sync = { git = "https://github.com/embassy-rs/embassy", rev = "{{embassyrev}}" }
+embassy-executor = { git = "https://github.com/embassy-rs/embassy", rev = "{{embassyrev}}" }
+embassy-time = { git = "https://github.com/embassy-rs/embassy", rev = "{{embassyrev}}" }
+embassy-rp = { git = "https://github.com/embassy-rs/embassy", rev = "{{embassyrev}}" }
+embassy-futures = { git = "https://github.com/embassy-rs/embassy", rev = "{{embassyrev}}" }
+{%- if usb %}
 ## USB
-embassy-usb = { git = "https://github.com/embassy-rs/embassy", rev = "4634316749c41dd5d8cc2f316033c9098369ed2f" }
-embassy-usb-logger = { git = "https://github.com/embassy-rs/embassy", rev = "4634316749c41dd5d8cc2f316033c9098369ed2f" }
+embassy-usb = { git = "https://github.com/embassy-rs/embassy", rev = "{{embassyrev}}" }
+embassy-usb-logger = { git = "https://github.com/embassy-rs/embassy", rev = "{{embassyrev}}" }
+{%- endif %}
+{%- if wiznet or cyw43 %}
 ## network support
-embassy-net = { git = "https://github.com/embassy-rs/embassy", rev = "4634316749c41dd5d8cc2f316033c9098369ed2f" }
+embassy-net = { git = "https://github.com/embassy-rs/embassy", rev = "{{embassyrev}}" }
+{%- endif %}
+{%- if wiznet %}
 # wiznet ethernet driver support
-embassy-net-wiznet = { git = "https://github.com/embassy-rs/embassy", rev = "4634316749c41dd5d8cc2f316033c9098369ed2f" }
+embassy-net-wiznet = { git = "https://github.com/embassy-rs/embassy", rev = "{{embassyrev}}" }
+{%- endif %}
+{%- if cyw43 %}
 ## pico-w support
-cyw43 = { git = "https://github.com/embassy-rs/embassy", rev = "4634316749c41dd5d8cc2f316033c9098369ed2f" }
-cyw43-pio = { git = "https://github.com/embassy-rs/embassy", rev = "4634316749c41dd5d8cc2f316033c9098369ed2f" }
+cyw43 = { git = "https://github.com/embassy-rs/embassy", rev = "{{embassyrev}}" }
+cyw43-pio = { git = "https://github.com/embassy-rs/embassy", rev = "{{embassyrev}}" }
+{%- endif %}
 
 # cargo build/run
 [profile.dev]

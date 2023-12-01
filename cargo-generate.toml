@@ -1,0 +1,34 @@
+[template]
+cargo_generate_version = ">=0.9.0"
+include = [ "Cargo.toml", "cargo-generate/Cargo.toml" ]
+ignore = [ ".git" ]
+
+[hooks]
+post = [
+    "cargo-generate/pre-hook.rhai"
+]
+
+[placeholders.usb]
+type = "bool"
+prompt = "Enable USB logging?"
+default = false
+
+[placeholders.cyw43]
+type = "bool"
+prompt = "Enable wifi support for Pico-W?"
+default = false
+
+[placeholders.wiznet]
+type = "bool"
+prompt = "Enable wiznet ethernet support"
+default = false
+
+[placeholders.pio]
+type = "bool"
+prompt = "Include PIO crates?"
+default = false
+
+[placeholders.embassyrev]
+type = "string"
+prompt = "Which embassy git rev should be used?"
+default = "4634316749c41dd5d8cc2f316033c9098369ed2f"
