@@ -16,45 +16,46 @@ panic-probe = { version = "0.3", features = ["print-defmt"] }
 
 embassy-embedded-hal = { version = "0.1.0", features = ["defmt"] }
 
-embassy-executor = { version = "0.3.3", features = ["nightly", "arch-cortex-m", "executor-thread", "executor-interrupt", "defmt", "integrated-timers"] }
+embassy-executor = { version = "0.4.0", features = ["arch-cortex-m", "executor-thread", "executor-interrupt", "defmt", "integrated-timers", "task-arena-size-32768"] }
 embassy-futures = { version = "0.1.0" }
 embassy-sync = { version = "0.4.0", features = ["defmt"] }
-embassy-time = { version = "0.1.5", features = ["nightly", "unstable-traits", "defmt", "defmt-timestamp-uptime"] }
+embassy-time = { version = "0.1.4", features = ["defmt", "defmt-timestamp-uptime"] }
 
-embassy-rp = { version = "0.1.0", features = ["defmt", "unstable-traits", "nightly", "unstable-pac", "time-driver", "critical-section-impl"] }
+embassy-rp = { version = "0.1.0", features = ["defmt", "unstable-pac", "time-driver", "critical-section-impl"] }
 ## need these for pio
-pio-proc = "0.2"
+pio-proc = "0.2.2"
 pio = "0.2.1"
 ## USB + logging via USB support (note: embassy-usb-logger requires portable-atomic with critical-section feature enabled)
-embassy-usb = { version = "0.1.0", features = ["defmt"] }
+embassy-usb-driver = { version = "0.1.0", features = ["defmt"] }
 embassy-usb-logger = { version = "0.1.0" }
 portable-atomic = { version = "1.5.1", features = ["critical-section"] }
 log = "0.4"
 ## network support
-embassy-net = { version = "0.2.0", features = ["defmt", "nightly", "tcp", "udp", "dhcpv4", "medium-ethernet"] }
+embassy-net = { version = "0.2.0", features = ["defmt", "tcp", "udp", "dhcpv4", "medium-ethernet"] }
 # wiznet ethernet driver support
 embassy-net-wiznet = { version = "0.1.0", features = ["defmt"] }
 ## pico-w support
 cyw43 = { version = "0.1.0", features = ["defmt", "firmware-logs"] }
 cyw43-pio = { version = "0.1.0", features = ["defmt", "overclock"] }
+static_cell = { version = "2"}
 
 [patch.crates-io]
-embassy-embedded-hal = { git = "https://github.com/embassy-rs/embassy", rev = "4634316749c41dd5d8cc2f316033c9098369ed2f" }
-embassy-sync = { git = "https://github.com/embassy-rs/embassy", rev = "4634316749c41dd5d8cc2f316033c9098369ed2f" }
-embassy-executor = { git = "https://github.com/embassy-rs/embassy", rev = "4634316749c41dd5d8cc2f316033c9098369ed2f" }
-embassy-time = { git = "https://github.com/embassy-rs/embassy", rev = "4634316749c41dd5d8cc2f316033c9098369ed2f" }
-embassy-rp = { git = "https://github.com/embassy-rs/embassy", rev = "4634316749c41dd5d8cc2f316033c9098369ed2f" }
-embassy-futures = { git = "https://github.com/embassy-rs/embassy", rev = "4634316749c41dd5d8cc2f316033c9098369ed2f" }
+embassy-embedded-hal = { git = "https://github.com/embassy-rs/embassy", rev = "8b36a32ed5d834b23e970d5b723dd7df1f1c94a2" }
+embassy-sync = { git = "https://github.com/embassy-rs/embassy", rev = "8b36a32ed5d834b23e970d5b723dd7df1f1c94a2" }
+embassy-executor = { git = "https://github.com/embassy-rs/embassy", rev = "8b36a32ed5d834b23e970d5b723dd7df1f1c94a2" }
+embassy-time = { git = "https://github.com/embassy-rs/embassy", rev = "8b36a32ed5d834b23e970d5b723dd7df1f1c94a2" }
+embassy-rp = { git = "https://github.com/embassy-rs/embassy", rev = "8b36a32ed5d834b23e970d5b723dd7df1f1c94a2" }
+embassy-futures = { git = "https://github.com/embassy-rs/embassy", rev = "8b36a32ed5d834b23e970d5b723dd7df1f1c94a2" }
 ## USB
-embassy-usb = { git = "https://github.com/embassy-rs/embassy", rev = "4634316749c41dd5d8cc2f316033c9098369ed2f" }
-embassy-usb-logger = { git = "https://github.com/embassy-rs/embassy", rev = "4634316749c41dd5d8cc2f316033c9098369ed2f" }
+embassy-usb-driver = { git = "https://github.com/embassy-rs/embassy", rev = "8b36a32ed5d834b23e970d5b723dd7df1f1c94a2" }
+embassy-usb-logger = { git = "https://github.com/embassy-rs/embassy", rev = "8b36a32ed5d834b23e970d5b723dd7df1f1c94a2" }
 ## network support
-embassy-net = { git = "https://github.com/embassy-rs/embassy", rev = "4634316749c41dd5d8cc2f316033c9098369ed2f" }
+embassy-net = { git = "https://github.com/embassy-rs/embassy", rev = "8b36a32ed5d834b23e970d5b723dd7df1f1c94a2" }
 # wiznet ethernet driver support
-embassy-net-wiznet = { git = "https://github.com/embassy-rs/embassy", rev = "4634316749c41dd5d8cc2f316033c9098369ed2f" }
+embassy-net-wiznet = { git = "https://github.com/embassy-rs/embassy", rev = "8b36a32ed5d834b23e970d5b723dd7df1f1c94a2" }
 ## pico-w support
-cyw43 = { git = "https://github.com/embassy-rs/embassy", rev = "4634316749c41dd5d8cc2f316033c9098369ed2f" }
-cyw43-pio = { git = "https://github.com/embassy-rs/embassy", rev = "4634316749c41dd5d8cc2f316033c9098369ed2f" }
+cyw43 = { git = "https://github.com/embassy-rs/embassy", rev = "8b36a32ed5d834b23e970d5b723dd7df1f1c94a2" }
+cyw43-pio = { git = "https://github.com/embassy-rs/embassy", rev = "8b36a32ed5d834b23e970d5b723dd7df1f1c94a2" }
 
 # cargo build/run
 [profile.dev]

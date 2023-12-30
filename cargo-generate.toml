@@ -31,4 +31,4 @@ default = false
 [placeholders.embassyrev]
 type = "string"
 prompt = "Which embassy git rev should be used?"
-default = "4634316749c41dd5d8cc2f316033c9098369ed2f"
+default = "8b36a32ed5d834b23e970d5b723dd7df1f1c94a2"
