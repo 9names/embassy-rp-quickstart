@@ -39,9 +39,6 @@ cyw43 = { version = "0.1.0", features = ["defmt", "firmware-logs"] }
 cyw43-pio = { version = "0.1.0", features = ["defmt", "overclock"] }
 static_cell = { version = "2"}
 
-[patch.crates-io]
-embassy-usb-logger = { git = "https://github.com/embassy-rs/embassy", rev = "8b36a32ed5d834b23e970d5b723dd7df1f1c94a2" }
-
 # cargo build/run
 [profile.dev]
 codegen-units = 1
