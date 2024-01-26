@@ -1,6 +1,6 @@
 [template]
 cargo_generate_version = ">=0.9.0"
-include = ["Cargo.toml", "cargo-generate/Cargo.toml"]
+include = ["Cargo.toml", ".vscode/launch.json"]
 ignore = [".git"]
 
 [hooks]

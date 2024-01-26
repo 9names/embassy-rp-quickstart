@@ -1,4 +1,5 @@
 file::rename("cargo-generate/Cargo.toml", "Cargo.toml");
+file::rename("cargo-generate/launch.json", ".vscode/launch.json");
 let picow = variable::get("cyw43");
 if picow {
     file::rename("cargo-generate/wifi-blinky.rs", "src/main.rs");
