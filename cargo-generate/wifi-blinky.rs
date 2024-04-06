@@ -27,10 +27,15 @@ async fn wifi_task(
     runner.run().await
 }
 
+#[cortex_m_rt::pre_init]
+unsafe fn before_main() {
+    // Soft-reset doesn't clear spinlocks. Clear the one used by critical-section
+    // before we hit main to avoid deadlocks when using a debugger
+    embassy_rp::pac::SIO.spinlock(31).write_value(1);
+}
 
 #[embassy_executor::main]
 async fn main(spawner: Spawner) {
-    embassy_rp::pac::SIO.spinlock(31).write_value(1);
     info!("Program start");
     let p = embassy_rp::init(Default::default());
     let fw = include_bytes!("../cyw43-firmware/43439A0.bin");
