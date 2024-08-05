@@ -8,13 +8,6 @@ use embassy_time::{Duration, Timer};
 use gpio::{Level, Output};
 use {defmt_rtt as _, panic_probe as _};
 
-#[cortex_m_rt::pre_init]
-unsafe fn before_main() {
-    // Soft-reset doesn't clear spinlocks. Clear the one used by critical-section
-    // before we hit main to avoid deadlocks when using a debugger
-    embassy_rp::pac::SIO.spinlock(31).write_value(1);
-}
-
 #[embassy_executor::main]
 async fn main(_spawner: Spawner) {
     info!("Program start");
