@@ -7,21 +7,21 @@ resolver = "2"
 
 
 [dependencies]
-cortex-m = { version = "0.7.6", features = ["inline-asm"] }
-cortex-m-rt = "0.7.0"
+cortex-m = { version = "0.7", features = ["inline-asm"] }
+cortex-m-rt = "0.7"
 
 defmt = "0.3"
 defmt-rtt = "0.4"
 panic-probe = { version = "0.3", features = ["print-defmt"] }
 
-embassy-embedded-hal = { version = "0.2.0", features = ["defmt"] }
+embassy-embedded-hal = { version = "0.3", features = ["defmt"] }
 
-embassy-executor = { version = "0.6.0", features = ["arch-cortex-m", "executor-thread", "executor-interrupt", "defmt", "integrated-timers", "task-arena-size-32768"] }
-embassy-futures = { version = "0.1.0" }
-embassy-sync = { version = "0.6.0", features = ["defmt"] }
-embassy-time = { version = "0.3.0", features = ["defmt", "defmt-timestamp-uptime"] }
+embassy-executor = { version = "0.7", features = ["arch-cortex-m", "executor-thread", "executor-interrupt", "defmt", "task-arena-size-32768"] }
+embassy-futures = { version = "0.1" }
+embassy-sync = { version = "0.6", features = ["defmt"] }
+embassy-time = { version = "0.4", features = ["defmt", "defmt-timestamp-uptime"] }
 
-embassy-rp = { version = "0.2.0", features = ["defmt", "unstable-pac", "time-driver", "critical-section-impl"] }
+embassy-rp = { version = "0.3", features = ["defmt", "unstable-pac", "time-driver", "critical-section-impl", "rp2040"] }
 {%- if pio %}
 ## need these for pio
 pio-proc = "0.2.2"
@@ -29,22 +29,22 @@ pio = "0.2.1"
 {%- endif %}
 {%- if usb %}
 ## USB + logging via USB support (note: embassy-usb-logger requires portable-atomic with critical-section feature enabled)
-embassy-usb-driver = { version = "0.1.0", features = ["defmt"] }
-embassy-usb-logger = { version = "0.2.0" }
+embassy-usb-driver = { version = "0.1", features = ["defmt"] }
+embassy-usb-logger = { version = "0.4" }
 log = "0.4"
 {%- endif %}
 {%- if wiznet or cyw43 %}
 ## network support
-embassy-net = { version = "0.4.0", features = ["defmt", "tcp", "udp", "dhcpv4", "medium-ethernet"] }
+embassy-net = { version = "0.6", features = ["defmt", "tcp", "udp", "dhcpv4", "medium-ethernet", "dns", "proto-ipv4", "proto-ipv6", "multicast"] }
 {%- endif %}
 {%- if wiznet %}
 # wiznet ethernet driver support
-embassy-net-wiznet = { version = "0.1.0", features = ["defmt"] }
+embassy-net-wiznet = { version = "0.2", features = ["defmt"] }
 {%- endif %}
 {%- if cyw43 %}
 ## pico-w support
-cyw43 = { version = "0.2.0", features = ["defmt", "firmware-logs"] }
-cyw43-pio = { version = "0.2.0", features = ["defmt", "overclock"] }
+cyw43 = { version = "0.3", features = ["defmt", "firmware-logs"] }
+cyw43-pio = { version = "0.3", features = ["defmt"] }
 static_cell = { version = "2"}
 {%- endif %}
 portable-atomic = { version = "1.5.1", features = ["critical-section"] }
